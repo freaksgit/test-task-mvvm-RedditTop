@@ -4,6 +4,7 @@ import com.vasylstoliarchuk.reddittops.App
 import com.vasylstoliarchuk.reddittops.di.module.AppModule
 import com.vasylstoliarchuk.reddittops.di.module.DataModule
 import com.vasylstoliarchuk.reddittops.di.module.NetworkModule
+import com.vasylstoliarchuk.reddittops.di.module.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -16,7 +17,8 @@ import javax.inject.Singleton
         AppModule::class,
         AndroidSupportInjectionModule::class,
         DataModule::class,
-        NetworkModule::class
+        NetworkModule::class,
+        ViewModelModule::class
     ]
 )
 interface AppComponent : AndroidInjector<App> {

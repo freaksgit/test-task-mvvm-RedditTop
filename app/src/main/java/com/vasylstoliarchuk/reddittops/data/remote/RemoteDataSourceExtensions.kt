@@ -33,6 +33,7 @@ fun RetrofitListingData.mapToRedditListingData(): RedditListingData {
 
 fun RetrofitPost.mapToRedditPost(): RedditPost {
     return RedditPost(
+        id = id,
         title = title,
         author = author,
         createdUtc = createdUtc,

@@ -41,7 +41,6 @@ class TopPostsFragment : DaggerFragment() {
         })
     }
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.top_posts_fragment, container, false)
     }
@@ -75,13 +74,14 @@ class TopPostsFragment : DaggerFragment() {
                 }
                 is Resource.Failure -> {
                     hideLoading()
+                    topPostsAdapter.swapItems(emptyList())
                     showError(data.message) {
                         hideError()
                         viewModel.refresh()
                     }
                 }
                 Resource.Loading -> {
-                    if(!swipeContainer.isRefreshing){
+                    if (!swipeContainer.isRefreshing) {
                         showLoading()
                     }
                 }

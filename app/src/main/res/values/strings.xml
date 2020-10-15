@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">RedditTops</string>
+
+    <string name="top_posts_item_header_placeholder">%s %s</string>
 </resources>

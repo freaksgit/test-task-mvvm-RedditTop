@@ -38,6 +38,8 @@ fun RetrofitPost.mapToRedditPost(): RedditPost {
         author = author,
         createdUtc = createdUtc,
         thumbnail = thumbnail,
+        thumbnailWidth = thumbnailWidth,
+        thumbnailHeight = thumbnailHeight,
         numComments = numComments
     )
 }

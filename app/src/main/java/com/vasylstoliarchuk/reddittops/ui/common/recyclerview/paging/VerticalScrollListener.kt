@@ -1,4 +1,4 @@
-package com.vasylstoliarchuk.reddittops.ui.common.paging
+package com.vasylstoliarchuk.reddittops.ui.common.recyclerview.paging
 
 import androidx.recyclerview.widget.RecyclerView
 

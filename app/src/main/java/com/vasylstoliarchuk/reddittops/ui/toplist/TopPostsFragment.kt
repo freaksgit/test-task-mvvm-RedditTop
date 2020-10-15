@@ -8,9 +8,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vasylstoliarchuk.reddittops.R
 import com.vasylstoliarchuk.reddittops.data.Resource
-import com.vasylstoliarchuk.reddittops.ui.common.paging.OnFetchNextPageListener
-import com.vasylstoliarchuk.reddittops.ui.common.paging.PagingVerticalScrollListener
-import com.vasylstoliarchuk.reddittops.ui.toplist.model.TopPostsItem
+import com.vasylstoliarchuk.reddittops.ui.common.recyclerview.SpacingBetweenItemDecoration
+import com.vasylstoliarchuk.reddittops.ui.common.recyclerview.paging.OnFetchNextPageListener
+import com.vasylstoliarchuk.reddittops.ui.common.recyclerview.paging.PagingVerticalScrollListener
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.top_posts_fragment.*
 import javax.inject.Inject
@@ -33,7 +33,8 @@ class TopPostsFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        recyclerView.adapter = adapter
+        adapter.setHasStableIds(true)
+        recyclerView.setHasFixedSize(true)
         recyclerView.addOnScrollListener(PagingVerticalScrollListener().apply {
             addOnPagingDataListener(object : OnFetchNextPageListener {
                 override fun onFetchNextPage() {
@@ -41,6 +42,8 @@ class TopPostsFragment : DaggerFragment() {
                 }
             })
         })
+        recyclerView.addItemDecoration(SpacingBetweenItemDecoration(resources.getDimensionPixelSize(R.dimen.materialSpacing_half)))
+        recyclerView.adapter = adapter
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -49,13 +52,13 @@ class TopPostsFragment : DaggerFragment() {
         viewModel.topPostsLiveData.observe(viewLifecycleOwner) { data ->
             when (data) {
                 is Resource.Success -> {
-                    adapter.swapItems(data.value.map { TopPostsItem(it.id!!, it.title!!) })// TODO: 10/14/2020 Actualize
+                    adapter.swapItems(data.value)
                 }
                 is Resource.Failure -> {
-
+                    // TODO: 10/15/2020 handle
                 }
                 Resource.Loading -> {
-
+                    // TODO: 10/15/2020 handle
                 }
             }
         }
@@ -63,13 +66,15 @@ class TopPostsFragment : DaggerFragment() {
         viewModel.nextPageLiveData.observe(viewLifecycleOwner) { data ->
             when (data) {
                 is Resource.Success -> {
-                    adapter.appendItems(data.value.map { TopPostsItem(it.id!!, it.title!!) }) // TODO: 10/14/2020 Actualize
+                    adapter.setProgressVisible(false)
+                    adapter.appendItems(data.value)
                 }
                 is Resource.Failure -> {
-
+                    adapter.setProgressVisible(false)
+                    adapter.showError(data.message ?: data.cause?.localizedMessage)
                 }
                 Resource.Loading -> {
-
+                    adapter.setProgressVisible(true)
                 }
             }
         }

@@ -19,6 +19,12 @@ data class RetrofitPost(
     @field:SerializedName("thumbnail")
     val thumbnail: String? = null,
 
+    @field:SerializedName("thumbnail_height")
+    val thumbnailHeight: Int? = null,
+
+    @field:SerializedName("thumbnail_width")
+    val thumbnailWidth: Int? = null,
+
     @field:SerializedName("num_comments")
     val numComments: Int? = null,
 

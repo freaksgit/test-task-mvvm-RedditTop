@@ -48,17 +48,16 @@ class TopPostsFragment : DaggerFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         errorAdapter.onErrorClickListener = {
             errorAdapter.hideError()
             setPaginationEnabled(true)
             viewModel.loadMoreTopPosts()
         }
-        topPostsAdapter.setHasStableIds(true)
         recyclerView.setHasFixedSize(true)
-        setPaginationEnabled(true)
         recyclerView.addItemDecoration(SpacingBetweenItemDecoration(resources.getDimensionPixelSize(R.dimen.materialSpacing_half)))
+        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = ConcatAdapter(topPostsAdapter, errorAdapter, progressAdapter)
+        setPaginationEnabled(true)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

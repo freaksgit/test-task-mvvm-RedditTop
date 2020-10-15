@@ -8,11 +8,13 @@ import com.vasylstoliarchuk.reddittops.ui.toplist.TopPostsViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
+import javax.inject.Singleton
 
 @Module
 abstract class ViewModelModule {
 
     @Binds
+    @Singleton
     internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 
     @Binds

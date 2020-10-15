@@ -7,7 +7,6 @@ import java.util.*
 
 data class TopPostsItem(
     val id: String,
-    val itemId:Long,
     val title: String,
     val author: String,
     val createdUtc: String,
@@ -21,7 +20,6 @@ data class TopPostsItem(
         fun from(redditPost: RedditPost): TopPostsItem {
             return TopPostsItem(
                 id = redditPost.id ?: "",
-                itemId = redditPost.id.hashCode().toLong(),
                 title = redditPost.title ?: "",
                 author = redditPost.author ?: "",
                 createdUtc = formatCreatedDate(redditPost.createdUtc),

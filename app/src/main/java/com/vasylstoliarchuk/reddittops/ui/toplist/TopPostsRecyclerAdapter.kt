@@ -52,7 +52,6 @@ class TopPostsRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() 
         }
     }
 
-    override fun getItemId(position: Int): Long = items[position].itemId
     override fun getItemCount(): Int = items.size
 
     private class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)

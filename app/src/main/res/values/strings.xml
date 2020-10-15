@@ -2,4 +2,9 @@
     <string name="app_name">RedditTops</string>
 
     <string name="top_posts_item_header_placeholder">%s %s</string>
+    <string name="generic_retry">Retry</string>
+    <string name="generic_oops">Oops</string>
+    <string name="generic_error">Something went wrong. Please try again later.</string>
+    <string name="generic_error_no_network">NO NETWORK\nIt seems that you are offline. Please check your internet connection and try again.</string>
+    <string name="generic_error_timeout">TIMEOUT\nThe server does not response. Please check your internet connection and try again.</string>
 </resources>

@@ -5,7 +5,7 @@ import com.vasylstoliarchuk.reddittops.data.Repository
 import com.vasylstoliarchuk.reddittops.data.Resource
 import com.vasylstoliarchuk.reddittops.data.map
 import com.vasylstoliarchuk.reddittops.data.model.RedditPost
-import com.vasylstoliarchuk.reddittops.ui.toplist.model.TopPostsItem
+import com.vasylstoliarchuk.reddittops.ui.toplist.adapter.TopPostsItem
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

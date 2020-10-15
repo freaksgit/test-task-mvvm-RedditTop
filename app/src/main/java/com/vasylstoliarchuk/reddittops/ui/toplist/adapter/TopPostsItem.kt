@@ -1,4 +1,4 @@
-package com.vasylstoliarchuk.reddittops.ui.toplist.model
+package com.vasylstoliarchuk.reddittops.ui.toplist.adapter
 
 import android.annotation.SuppressLint
 import android.text.format.DateUtils

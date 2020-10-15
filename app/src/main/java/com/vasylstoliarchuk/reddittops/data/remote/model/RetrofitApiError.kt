@@ -10,10 +10,9 @@ data class RetrofitApiError(
 
     @field:SerializedName("message")
     val message: String? = null
-
 ) {
 
-    fun toFailure(cause: Exception? = null): Resource.Failure {
-        return Resource.Failure(if (cause is HttpException) cause.code() else null, error, message, cause)
+    fun toFailure(cause: Exception? = null, defaultMessage: String): Resource.Failure {
+        return Resource.Failure(if (cause is HttpException) cause.code() else null, error, message ?: defaultMessage, cause)
     }
 }

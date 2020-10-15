@@ -4,13 +4,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.updateLayoutParams
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.vasylstoliarchuk.reddittops.R
 import com.vasylstoliarchuk.reddittops.ui.common.inflate
 import com.vasylstoliarchuk.reddittops.ui.toplist.adapter.TopPostsItem
-import com.vasylstoliarchuk.reddittops.ui.toplist.adapter.TopPostsItemDiffUtil
 import kotlinx.android.synthetic.main.top_posts_item.view.*
 
 class TopPostsRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -18,9 +16,9 @@ class TopPostsRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() 
 
     fun swapItems(newItems: List<TopPostsItem>) {
         items.clear()
-        DiffUtil.calculateDiff(TopPostsItemDiffUtil(this.items, newItems))
-            .dispatchUpdatesTo(this)
         items.addAll(newItems)
+        //TODO: use TopPostsItemDiffUtil after fixes of the ConcatAdapter issues with DiffResult dispatching
+        notifyDataSetChanged()
     }
 
     fun appendItems(newItems: List<TopPostsItem>) {
@@ -49,6 +47,7 @@ class TopPostsRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() 
             }
             tvHeader.text = resources.getString(R.string.top_posts_item_header_placeholder, item.author, item.createdUtc)
             tvTitle.text = item.title
+            tvCommentsNum.text = resources.getString(R.string.top_posts_item_comments_number_placeholder, item.numComments)
         }
     }
 

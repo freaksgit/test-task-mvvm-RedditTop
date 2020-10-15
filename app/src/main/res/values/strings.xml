@@ -2,6 +2,7 @@
     <string name="app_name">RedditTops</string>
 
     <string name="top_posts_item_header_placeholder">%s %s</string>
+    <string name="top_posts_item_comments_number_placeholder">%d Comments</string>
     <string name="generic_retry">Retry</string>
     <string name="generic_oops">Oops</string>
     <string name="generic_error">Something went wrong. Please try again later.</string>

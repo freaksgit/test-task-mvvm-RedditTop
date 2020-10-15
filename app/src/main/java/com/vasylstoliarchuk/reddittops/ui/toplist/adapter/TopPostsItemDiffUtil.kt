@@ -2,6 +2,7 @@ package com.vasylstoliarchuk.reddittops.ui.toplist.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 
+//It works weird with ConcatAdapter so I decided to not use it.
 class TopPostsItemDiffUtil(private val oldItems: List<TopPostsItem>, private val newItems: List<TopPostsItem>) : DiffUtil.Callback() {
     override fun getOldListSize(): Int = oldItems.size
     override fun getNewListSize(): Int = newItems.size

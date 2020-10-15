@@ -58,6 +58,10 @@ class TopPostsFragment : DaggerFragment() {
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = ConcatAdapter(topPostsAdapter, errorAdapter, progressAdapter)
         setPaginationEnabled(true)
+
+        swipeContainer.setOnRefreshListener {
+            viewModel.refresh()
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -77,7 +81,9 @@ class TopPostsFragment : DaggerFragment() {
                     }
                 }
                 Resource.Loading -> {
-                    showLoading()
+                    if(!swipeContainer.isRefreshing){
+                        showLoading()
+                    }
                 }
             }
         }
@@ -126,6 +132,7 @@ class TopPostsFragment : DaggerFragment() {
 
     private fun hideLoading() {
         pbLoading.visibility = View.GONE
+        swipeContainer.isRefreshing = false
     }
 
     private fun setPaginationEnabled(enabled: Boolean) {

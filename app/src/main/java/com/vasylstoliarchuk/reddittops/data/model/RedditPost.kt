@@ -1,15 +1,13 @@
 package com.vasylstoliarchuk.reddittops.data.model
 
-import com.google.gson.annotations.SerializedName
 
 data class RedditPost(
-    val id: String? = null,
-    val title: String? = null,
-    val author: String? = null,
-    val createdUtc: Long? = null,
-    val thumbnail: String? = null,
-    val thumbnailHeight: Int? = null,
-    val thumbnailWidth: Int? = null,
-    val numComments: Int? = null,
-    val urlOverriddenByDest: String? = null
+    val id: String?,
+    val title: String?,
+    val author: String?,
+    val createdUtc: Long?,
+    val thumbnail: String?,
+    val thumbnailHeight: Int?,
+    val thumbnailWidth: Int?,
+    val numComments: Int?
 )

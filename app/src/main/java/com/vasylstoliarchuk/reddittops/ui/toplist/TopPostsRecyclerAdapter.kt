@@ -2,6 +2,7 @@ package com.vasylstoliarchuk.reddittops.ui.toplist
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +14,8 @@ import kotlinx.android.synthetic.main.top_posts_item.view.*
 
 class TopPostsRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val items = mutableListOf<TopPostsItem>()
+
+    var onImageClickListener: ((view: ImageView, item: TopPostsItem) -> Unit)? = null
 
     fun swapItems(newItems: List<TopPostsItem>) {
         items.clear()
@@ -28,7 +31,11 @@ class TopPostsRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return PostViewHolder(parent.inflate(R.layout.top_posts_item))
+        return PostViewHolder(parent.inflate(R.layout.top_posts_item)).apply {
+            itemView.ivThumbnail.setOnClickListener {
+                onImageClickListener?.invoke(itemView.ivThumbnail, items[bindingAdapterPosition])
+            }
+        }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -42,6 +49,8 @@ class TopPostsRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() 
                 Picasso.get()
                     .load(item.thumbnail)
                     .into(ivThumbnail)
+
+                ivThumbnail.transitionName = item.thumbnail
             } else {
                 ivThumbnail.visibility = View.GONE
             }

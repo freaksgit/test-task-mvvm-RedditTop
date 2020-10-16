@@ -1,7 +1,9 @@
 package com.vasylstoliarchuk.reddittops.ui.common.navigation
 
+import android.view.View
 import com.vasylstoliarchuk.reddittops.R
 import com.vasylstoliarchuk.reddittops.ui.AppActivity
+import com.vasylstoliarchuk.reddittops.ui.image.ImageFragment
 import com.vasylstoliarchuk.reddittops.ui.toplist.TopPostsFragment
 
 class AppNavigatorImpl(private val appActivity: AppActivity) : AppNavigator {
@@ -15,7 +17,11 @@ class AppNavigatorImpl(private val appActivity: AppActivity) : AppNavigator {
         }
     }
 
-    override fun navigateToImageDetails() {
-
+    override fun navigateToImageDetails(sharedElementView: View, id: String, imageUrl: String?) {
+        fm.beginTransaction()
+            .addSharedElement(sharedElementView, sharedElementView.transitionName)
+            .addToBackStack(null)
+            .replace(R.id.fragmentContainer, ImageFragment.newInstance(id, imageUrl, sharedElementView.transitionName))
+            .commit();
     }
 }

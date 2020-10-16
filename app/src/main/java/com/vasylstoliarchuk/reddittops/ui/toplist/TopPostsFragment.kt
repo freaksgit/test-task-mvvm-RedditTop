@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vasylstoliarchuk.reddittops.R
 import com.vasylstoliarchuk.reddittops.data.Resource
+import com.vasylstoliarchuk.reddittops.ui.common.navigation.AppNavigator
 import com.vasylstoliarchuk.reddittops.ui.common.recyclerview.SpacingBetweenItemDecoration
 import com.vasylstoliarchuk.reddittops.ui.common.recyclerview.paging.OnFetchNextPageListener
 import com.vasylstoliarchuk.reddittops.ui.common.recyclerview.paging.PagingVerticalScrollListener
@@ -26,9 +27,18 @@ class TopPostsFragment : DaggerFragment() {
     }
 
     @Inject
+    lateinit var appNavigator: AppNavigator
+
+    @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: TopPostsViewModel
-    private val topPostsAdapter: TopPostsRecyclerAdapter by lazy { TopPostsRecyclerAdapter() }
+    private val topPostsAdapter: TopPostsRecyclerAdapter by lazy {
+        TopPostsRecyclerAdapter().apply {
+            onImageClickListener = { view, item ->
+                appNavigator.navigateToImageDetails(view, item.id, item.thumbnail)
+            }
+        }
+    }
     private val errorAdapter: ErrorRecyclerAdapter by lazy { ErrorRecyclerAdapter() }
     private val progressAdapter: ProgressRecyclerAdapter by lazy { ProgressRecyclerAdapter() }
     private var errorLayout: ViewGroup? = null

@@ -13,8 +13,7 @@ data class TopPostsItem(
     val thumbnail: String?,
     val thumbnailHeight: Int?,
     val thumbnailWidth: Int?,
-    val numComments: Int,
-    val urlOverriddenByDest: String?
+    val numComments: Int
 ) {
     companion object {
         fun from(redditPost: RedditPost): TopPostsItem {
@@ -26,8 +25,7 @@ data class TopPostsItem(
                 thumbnail = redditPost.thumbnail,
                 thumbnailHeight = redditPost.thumbnailHeight,
                 thumbnailWidth = redditPost.thumbnailWidth,
-                numComments = redditPost.numComments ?: 0,
-                urlOverriddenByDest = redditPost.urlOverriddenByDest
+                numComments = redditPost.numComments ?: 0
             )
         }
 

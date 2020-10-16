@@ -5,6 +5,7 @@ import com.vasylstoliarchuk.reddittops.di.scope.FragmentScope
 import com.vasylstoliarchuk.reddittops.ui.AppActivity
 import com.vasylstoliarchuk.reddittops.ui.common.navigation.AppNavigator
 import com.vasylstoliarchuk.reddittops.ui.common.navigation.AppNavigatorImpl
+import com.vasylstoliarchuk.reddittops.ui.image.ImageFragment
 import com.vasylstoliarchuk.reddittops.ui.toplist.TopPostsFragment
 import dagger.Module
 import dagger.Provides
@@ -16,6 +17,10 @@ abstract class AppActivityModule {
     @FragmentScope
     @ContributesAndroidInjector
     internal abstract fun topPostsFragmentInjector(): TopPostsFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector
+    internal abstract fun imageFragmentInjector(): ImageFragment
 
     companion object {
         @Provides

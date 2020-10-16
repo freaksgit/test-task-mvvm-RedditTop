@@ -8,4 +8,9 @@
     <string name="generic_error">Something went wrong. Please try again later.</string>
     <string name="generic_error_no_network">NO NETWORK\nIt seems that you are offline. Please check your internet connection and try again.</string>
     <string name="generic_error_timeout">TIMEOUT\nThe server does not response. Please check your internet connection and try again.</string>
+
+    <string name="menu_save_image">Save</string>
+    <string name="save_image_success">Image is successfully saved.</string>
+    <string name="save_image_failure">Something went wrong during image saving. Image is not saved.</string>
+    <string name="save_image_permission_not_granted">Permission is required.</string>
 </resources>

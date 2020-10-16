@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.vasylstoliarchuk.reddittops.di.ViewModelFactory
 import com.vasylstoliarchuk.reddittops.di.ViewModelKey
+import com.vasylstoliarchuk.reddittops.ui.image.ImageViewModel
 import com.vasylstoliarchuk.reddittops.ui.toplist.TopPostsViewModel
 import dagger.Binds
 import dagger.Module
@@ -22,5 +23,8 @@ abstract class ViewModelModule {
     @ViewModelKey(TopPostsViewModel::class)
     internal abstract fun topPostsViewModel(viewModel: TopPostsViewModel): ViewModel
 
-    //Add more ViewModels here
+    @Binds
+    @IntoMap
+    @ViewModelKey(ImageViewModel::class)
+    internal abstract fun imageViewModel(viewModel: ImageViewModel): ViewModel
 }

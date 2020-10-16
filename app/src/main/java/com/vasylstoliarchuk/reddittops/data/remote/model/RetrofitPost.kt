@@ -26,8 +26,5 @@ data class RetrofitPost(
     val thumbnailWidth: Int? = null,
 
     @field:SerializedName("num_comments")
-    val numComments: Int? = null,
-
-    @field:SerializedName("url_overridden_by_dest")
-    val urlOverriddenByDest: String? = null
+    val numComments: Int? = null
 )

@@ -13,7 +13,7 @@ import javax.inject.Inject
 class TopPostsViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
 
     private var isLoadingNextPage = false
-    private val _refresh: MutableLiveData<Boolean> = MutableLiveData(true)
+    private val _refresh: MutableLiveData<Boolean> = MutableLiveData(false)
     val topPostsLiveData: LiveData<Resource<List<TopPostsItem>>> = _refresh.switchMap { refresh ->
         liveData {
             emit(Resource.Loading)
